@@ -30,7 +30,6 @@ body{
 }
 .instruction{
     text-align:center;
-    table-layout:fixed;
     border:collapse;
     border:1px solid black;
     width:100%;

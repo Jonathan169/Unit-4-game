@@ -284,7 +284,7 @@ function oppUp(){
 
 function oppD(){
     if( Coppenent.health<=0){
-        fighters[player].health+=50;
+        fighters[player].health+=40;
         Coppenent.oppenent=false;
         side[enumber].children('img').attr('src', "https://github.com/Jonathan169/Unit-4-game/blob/master/assets/images/grey.jpg?raw=true");
         side[enumber].children('div').attr("class","bstats");
@@ -294,20 +294,18 @@ function oppD(){
         echance=1;
         Coppenent="";
     }
-    if(fallen===3){
-        setTimeout(function(){
-            if(confirm("the force thanks you But theres still more out there, would you like to try again")){
-            window.location.reload();
-        }}*1000)
-    };
+    setTimeout(message, 1000)
 };
 
-function playerdef(){
-    updateStats();
-    if(fighters[player].health<=0){
-        if(confirm("AWW you lost would you like to try again")){
-            window.open("Unit-4-game/unit.html")
+const message= function(){
+    if(fallen===3){
+        if(confirm("the force thanks you But theres still more out there, would you like to try again")){
+        window.location.reload();
+        }else{
+            alert("ok goodbye");
+            window.open("unit.html","_self");
         }
+
     }
 };
 
@@ -337,33 +335,43 @@ $("#attack").on("click",function(){
     }
     updateStats();
     oppD();
-    playerdef();
 });
 
 $("#counter").on("click",function(){
-
     comove();
-    if (oattack===true&& smove===echance){
+    if (oattack===true&& smove===2&& fighters[player].attack > 5){
     Coppenent.health= Coppenent.health - fighters[player].counter ;
     oppUp();
     console.log("i take no damage");
     }
-    else if (oattack===true){
+    else if (oattack===true&& fighters[player].attack > 5){
     fighters[player].health= fighters[player].health - (Coppenent.attack /4);
     Coppenent.health= Coppenent.health - fighters[player].counter ;
     console.log("i lose " + Coppenent.attack/4);
         oppUp();
     }
-    else if(ocounter===true){
+    else if(ocounter===true&& fighters[player].attack>5){
         Coppenent.health=Coppenent.health - 10;
         fighters[player].health= fighters[player].health - 10;
         fighters[player].attack= fighters[player].attack /2;
         Coppenent.attack=Coppenent.attack /2;
         console.log("we both counter")
+    }
+     else if (fighters[player].attack<=5&& oattack===true){
+    fighters[player].health = fighters[player].health - Coppenent.attack;
+    console.log("stop being a bish and attack")
+    oppUp()
     };
     updateStats();
     oppD();
-    playerdef();
+        if(fighters[player].health<=0){
+            if(confirm("AWW you lost would you like to try again")){
+                window.open("unit.html","_self")
+            } else{
+                alert("ok goodbye")
+                window.open("unit.html","_self")
+            }
+        }
 });
 
 
