@@ -282,7 +282,7 @@ function oppD(){
     if( Coppenent.health<=0){
         fighters[player].health+=40;
         Coppenent.oppenent=false;
-        side[enumber].children('img').attr('src', "grey.jpg");
+        side[enumber].children('img').attr('src', "https://github.com/Jonathan169/Unit-4-game/blob/master/assets/images/grey.jpg?raw=true");
         side[enumber].children('div').attr("class","bstats");
         updateStats();
         fighters[player].attack=fighters[player].attack*.4
@@ -370,10 +370,10 @@ $("#counter").on("click",function(){
     updateStats();
         if(fighters[player].health<=0){
             if(confirm("AWW you lost would you like to try again")){
-                window.open("unit.html","_self")
+                window.open("index.html","_self")
             } else{
                 alert("ok goodbye")
-                window.open("unit.html","_self")
+                window.open("index.html","_self")
             }
         }
 });
