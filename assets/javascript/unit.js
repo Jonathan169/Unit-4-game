@@ -3,9 +3,6 @@
 const luke={
     attack:10,
     name:"luke",
-    selected:"assets\sounds\vaderselected.mp3"
-    win:
-    fail:,
     health:200,
     maxpower:100,
     type:"jedi",
@@ -54,7 +51,7 @@ const sidious={
     get counter(){
         return this.attack / 3
     }
-}
+};
 const vader={
     attack:8,
     health:200,
@@ -90,8 +87,9 @@ const pics=[lukep,macep,yodap,sidiousp,vaderp,kylop];
 
 
 //variables for game play
-const sith=[sidious, vader, kylo]
-const jedi=[luke,mace,yoda]
+const sith=[sidious, vader, kylo];
+const jedi=[luke,mace,yoda];
+var audio="";
 let fallen="";
 let Coppenent="";
 let playerChosen="";
@@ -134,6 +132,7 @@ $("#luke").on("click", function(){
     start();
     check();
     oppenent();
+    
 });
 
 $("#mace").on("click", function(){
@@ -150,12 +149,14 @@ $("#yoda").on("click", function(){
     oppenent();
 });
 
+
 //begining game functions
 function start(id){
     for(let i=0;i<fighters.length;i++){
     if(playerChosen===flist[i]&& player===""){
         fighters[i].mainFighter=true;
         player=i;
+    
     }}
     if(fighters[player].type==="sith"){
         enumber=1;
@@ -222,8 +223,8 @@ function gameReady(){
 let coChoice;
 let oattack;
 let ocounter;
-let smove;;
-
+let smove;
+let echance=2;
 
 function comove(){
     oattack="";
@@ -285,50 +286,55 @@ function oppD(){
     if( Coppenent.health<=0){
         fighters[player].health+=50;
         Coppenent.oppenent=false;
-        side[enumber].children("p").text(Coppenent.name+ " DEFEATED");
         side[enumber].children('img').attr('src', "https://github.com/Jonathan169/Unit-4-game/blob/master/assets/images/grey.jpg?raw=true");
         side[enumber].children('div').attr("class","bstats");
         updateStats();
+        fighters[player].attack=fighters[player].attack/2
         fallen++;
+        echance=1;
         Coppenent="";
     }
     if(fallen===3){
-        if(confirm("the force thanks you But theres still more out there, would you like to try again")){
+        setTimeout(function(){
+            if(confirm("the force thanks you But theres still more out there, would you like to try again")){
             window.location.reload();
-        }
+        }}*1000)
     };
-    
 };
+
 function playerdef(){
     updateStats();
     if(fighters[player].health<=0){
         if(confirm("AWW you lost would you like to try again")){
-            window.open("file:///C:/Users/jonat/Documents/codingBootcamp/myRepo/Unit-4-game/unit.html")
+            window.open("Unit-4-game/unit.html")
         }
     }
-}
+};
 
 
 //onclick
 $("#attack").on("click",function(){
     comove();
 
-    if(ocounter===true && smove===2){
+    if(ocounter===true && smove===echance){
         fighters[player].health= fighters[player].health - Coppenent.counter;
         
-        console.log("opp takes no damage")
+        console.log("opp countered and takes no damage")
     }
     else if(ocounter===true){
         Coppenent.health=Coppenent.health - (fighters[player].attack /4);
         fighters[player].health= fighters[player].health - Coppenent.counter;
+        console.log("opp countered")
     }
     else if (oattack===true){
     fighters[player].health = fighters[player].health - Coppenent.attack;
     Coppenent.health= Coppenent.health - fighters[player].attack ;
+    console.log("opp attacked")
     oppUp();
     };
-    
-    powup();
+    if(battlestarted===true){
+     powup();
+    }
     updateStats();
     oppD();
     playerdef();
@@ -337,7 +343,7 @@ $("#attack").on("click",function(){
 $("#counter").on("click",function(){
 
     comove();
-    if (oattack===true&& smove===2){
+    if (oattack===true&& smove===echance){
     Coppenent.health= Coppenent.health - fighters[player].counter ;
     oppUp();
     console.log("i take no damage");
@@ -345,13 +351,13 @@ $("#counter").on("click",function(){
     else if (oattack===true){
     fighters[player].health= fighters[player].health - (Coppenent.attack /4);
     Coppenent.health= Coppenent.health - fighters[player].counter ;
-    console.log("i lose " +Coppenent.attack/4);
+    console.log("i lose " + Coppenent.attack/4);
         oppUp();
     }
     else if(ocounter===true){
         Coppenent.health=Coppenent.health - 10;
         fighters[player].health= fighters[player].health - 10;
-        fighter[player].attack= fighters[player].attack /2;
+        fighters[player].attack= fighters[player].attack /2;
         Coppenent.attack=Coppenent.attack /2;
         console.log("we both counter")
     };
