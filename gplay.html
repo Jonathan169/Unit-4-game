@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Star Wars RPG</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets\css\reset.css">
     <link rel="stylesheet" type="text/css" href="assets\css\unit.css">
@@ -16,7 +16,7 @@
     <aside id="darkside">
             <table id="elayout">
                     <tr>
-                        <div id="darth" style="width: 12rem;">
+                        <div id="sidious" style="width: 12rem;">
                                 <img src="assets\images\darthsidious.jpg" class="card-img-top" alt="...">
                                 <div class="estats">
                                   <p>Darth Sidious</p>
@@ -57,7 +57,7 @@
     <aside id="lightside">
             <table id="glayout">
                     <tr>
-                        <div style="width: 12rem;">
+                        <div id="luke" style="width: 12rem;">
                                 <img src="assets\images\luke.jpg" class="card-img-top" alt="...">
                                 <div class="stats">
                                         <p>Luke skywalker</p>
@@ -70,7 +70,7 @@
                                 <br>
                   </tr>
                     <tr>
-                        <div style="width: 12rem;">
+                        <div id="mace" style="width: 12rem;">
                                 <img src="assets/images/macewindu.jpg" class="card-img-top" alt="...">
                                 <div class="stats">
                                         <p>Mace windu</p>
@@ -84,7 +84,7 @@
                     </tr>
                     <tr>
                             
-                        <div style="width: 12rem;">
+                        <div id="yoda" style="width: 12rem;">
                                 <img src="assets/images/master_yoda_star_wars-t2.jpg" class="card-img-top" alt="...">
                                 <div class="stats">
                                         <p>Yoda</p>
@@ -97,14 +97,6 @@
     </aside>
 
 
-
-
-
-
-
-
-
-
 <div id="arena" class="clearfix">
         <table id="btable">
                 <tr>
@@ -112,13 +104,12 @@
                 </tr>
                 <tr>
                         <td>
-                               
                                 <div class="progress">
                                         <div id="sithhealth" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                         </td>
                         <td>
-
+                                &nbsp;
                         </td>
                         <td>
                                 <div class="progress">
@@ -132,7 +123,8 @@
                                 <div id="siths" class="greybox" style="width: 12rem;">
                                                 <img src="assets/images/grey.jpg" class="card-img-top" alt="...">
                                                 <div class="bstats">
-                                                    <p>blank</p>
+                                                    <p id="sname">blank</p>
+                                                    <p id="sattack"></p>
                                                 </div>
                                             </div>
 
@@ -146,8 +138,8 @@
                                 <div id="jedis" class="greybox" style="width: 12rem;">
                                                 <img src="assets/images/grey.jpg" class="card-img-top" alt="...">
                                                 <div class="bstats">
-                                                        <p>blank</p>
-                                                        
+                                                        <p id="jname">blank</p>
+                                                        <p id="jattack"></p>
                                                 </div>
                                 </div>
                              
@@ -158,6 +150,7 @@
                              <button id="attack">Attack</button>                           
                         </td>
                         <td>
+                                &nbsp;
 
                         </td>
                         <td>
