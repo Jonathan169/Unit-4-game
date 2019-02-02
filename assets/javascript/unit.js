@@ -87,14 +87,10 @@ const pics=[lukep,macep,yodap,sidiousp,vaderp,kylop];
 
 
 //variables for game play
-const sith=[sidious, vader, kylo];
-const jedi=[luke,mace,yoda];
-var audio="";
 let fallen="";
 let Coppenent="";
 let playerChosen="";
 let player="";
-let undo="";
 let battlestarted=false;
 let enumber="";
 let mynum="";
@@ -286,10 +282,10 @@ function oppD(){
     if( Coppenent.health<=0){
         fighters[player].health+=40;
         Coppenent.oppenent=false;
-        side[enumber].children('img').attr('src', "https://github.com/Jonathan169/Unit-4-game/blob/master/assets/images/grey.jpg?raw=true");
+        side[enumber].children('img').attr('src', "grey.jpg");
         side[enumber].children('div').attr("class","bstats");
         updateStats();
-        fighters[player].attack=fighters[player].attack/2
+        fighters[player].attack=fighters[player].attack*.4
         fallen++;
         echance=1;
         Coppenent="";
@@ -303,7 +299,7 @@ const message= function(){
         window.location.reload();
         }else{
             alert("ok goodbye");
-            window.open("unit.html","_self");
+            window.open("index.html","_self");
         }
 
     }
@@ -333,8 +329,16 @@ $("#attack").on("click",function(){
     if(battlestarted===true){
      powup();
     }
-    updateStats();
     oppD();
+    updateStats();
+    if(fighters[player].health<=0){
+        if(confirm("AWW you lost would you like to try again")){
+            window.open("index.html","_self")
+        } else{
+            alert("ok goodbye")
+            window.open("index.html","_self")
+        }
+    }
 });
 
 $("#counter").on("click",function(){
@@ -362,8 +366,8 @@ $("#counter").on("click",function(){
     console.log("stop being a bish and attack")
     oppUp()
     };
-    updateStats();
     oppD();
+    updateStats();
         if(fighters[player].health<=0){
             if(confirm("AWW you lost would you like to try again")){
                 window.open("unit.html","_self")
